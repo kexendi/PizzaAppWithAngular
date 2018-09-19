@@ -1,0 +1,14 @@
+<table class="table table-hover" *ngIf="(todos | async)?.length!= 0">
+    <thead>
+        <tr>
+            <td>TODO neve</td>
+            <td>TODO prioritása</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todo of todos | async">
+            <td>{{ todo.name }}</td>
+            <td>{{ todo.done }}</td>
+        </tr>
+    </tbody>
+</table>
