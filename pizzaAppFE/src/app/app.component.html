@@ -21,8 +21,33 @@
           Minden ki kell tölteni.
         </div>
       </div>
+
+
+
+
+      <div class="form-group">
+        <label class="col-md-4">PIZZA feltét</label>
+        <input type="text" class="form-control" formControlName="topping" #topping />
+      </div>
+      <div *ngIf="angForm.controls['topping'].invalid && (angForm.controls['topping'].dirty || angForm.controls['topping'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['topping'].errors.required">
+          Minden ki kell tölteni.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">PIZZA ár</label>
+        <input type="text" class="form-control" formControlName="price" #price />
+      </div>
+      <div *ngIf="angForm.controls['price'].invalid && (angForm.controls['price'].dirty || angForm.controls['price'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['price'].errors.required">
+          Minden ki kell tölteni.
+        </div>
+      </div>
       <div class="form-group">
         <button (click)="addTodoList(name.value, done.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Add</button>
+        <button (click)="postPizza(topping.value, price.value)"class="btn btn-primary" >Add2</button>
       </div>
     </form>
   </div>
@@ -31,4 +56,11 @@
 <h3 align="center">Angular ngrx/store Tutorial</h3>
 <div class="container">
   <app-display></app-display>
+</div>
+
+
+<div *ngFor = " let pizza of pizzas">
+{{pizza.id}}
+{{pizza.topping}}
+{{pizza.price}}
 </div>

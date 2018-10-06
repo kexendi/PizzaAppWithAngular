@@ -4,6 +4,7 @@ import { AppState } from './app.state';
 import { Store } from '@ngrx/store';
 import { TodoItem } from './TODO-list/todo-STORE.model';
 import { ADD_TODO} from './TODO-list/reducer/todo-Reducer';
+import { DisplayService } from './display.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,14 @@ import { ADD_TODO} from './TODO-list/reducer/todo-Reducer';
 })
 export class AppComponent implements OnInit {
   title = 'todoApp';
+  pizzas: any;
 
   angForm: FormGroup;
 
   constructor(
     private store: Store<AppState>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private displayService: DisplayService
     ) {
       this.createForm();
   }
@@ -25,7 +28,9 @@ export class AppComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       name: ['', Validators.required ],
-      done: ['', Validators.required ]
+      done: ['', Validators.required ],
+      topping: ['fasz habbal', Validators.required ],
+      price: ['', Validators.required ]
    });
   }
 
@@ -39,6 +44,25 @@ export class AppComponent implements OnInit {
     });
   }
 
+
+  getAllPizza() {
+    this.displayService.getPizzas().subscribe( data => {
+      this.pizzas = data;
+    });
+  }
+
+  postPizza(topping, price) {
+    const data = {
+      topping: topping,
+      price: price
+    };
+
+    this.displayService.postPizza(data).subscribe( () => {
+      this.getAllPizza();
+    });
+  }
+
   ngOnInit() {
+    this.getAllPizza();
   }
 }

@@ -40,5 +40,18 @@ public class Pizza {
 	public String getPrice() {
 		return price;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setTopping(String topping) {
+		this.topping = topping;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	
 }
 

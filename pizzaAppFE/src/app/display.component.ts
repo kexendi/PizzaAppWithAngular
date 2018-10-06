@@ -17,7 +17,7 @@ export class DisplayComponent implements OnInit {
 
   ngOnInit() {
       this.todos.subscribe({
-        next(response) { console.log('lofaFszfa:s' + response); },
+        next(response) { console.log('lofaFszfasz:' + response); },
         error(err) { console.error('Error: ' + err); },
         complete() { console.log('Completed'); }
        });
